@@ -4,6 +4,10 @@
 
 #include "../include/investidor.h"
 #include "../include/criptomoeda.h"
+#include "../include/criptomoeda.h"
+
+
+
 int main() {
     printf("=== SISTEMA ADMINISTRADOR ===\n");
 
@@ -37,7 +41,7 @@ int main() {
                  cadastrarCriptomoeda();
                 break;
             case 4:
-                // excluirCriptomoeda();
+                 excluirCriptomoeda();
                 break;
             case 5:
                 // consultarSaldo();
