@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "../include/login.h"
 
+#include "../include/investidor.h"
+#include "../include/criptomoeda.h"
 int main() {
     printf("=== SISTEMA ADMINISTRADOR ===\n");
 
@@ -26,13 +28,13 @@ int main() {
 
         switch (opcao) {
             case 1:
-                // cadastrarInvestidor();
+                 cadastrarInvestidor();
                 break;
             case 2:
                 // excluirInvestidor();
                 break;
             case 3:
-                // cadastrarCriptomoeda();
+                 cadastrarCriptomoeda();
                 break;
             case 4:
                 // excluirCriptomoeda();
