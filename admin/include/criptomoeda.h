@@ -9,5 +9,7 @@ typedef struct {
 } Criptomoeda;
 
 void cadastrarCriptomoeda();
+void excluirCriptomoeda();
+
 
 #endif
