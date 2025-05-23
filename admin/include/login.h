@@ -7,6 +7,11 @@ typedef struct {
     char senha[20];
 } Admin;
 
+
 int autenticarAdmin();
+int excluirInvestidor();
+
+
+
 
 #endif

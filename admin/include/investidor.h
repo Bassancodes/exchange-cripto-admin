@@ -1,4 +1,3 @@
-
 #ifndef INVESTIDOR_H
 #define INVESTIDOR_H
 
@@ -6,9 +5,12 @@ typedef struct {
     char nome[50];
     char cpf[12];
     char senha[20];
-} Investidor;
+    double saldoReais;
+    double saldoBTC;
+    double saldoETH;
+    double saldoXRP;
+} Usuario;
 
 void cadastrarInvestidor();
-void excluirInvestidor();
 
 #endif
