@@ -1,23 +1,25 @@
+
 #include <stdio.h>
 #include <string.h>
 #include "../include/login.h"
 
 int autenticarAdmin() {
-    Admin adminPadrao = {"Admin", "00000000000", "admin123"};
+    char cpfDigitado[12];
+    char senhaDigitada[20];
 
-    char cpf[12], senha[20];
-
-    printf("Digite o CPF do administrador: ");
-    scanf("%s", cpf);
+    printf("\n=== LOGIN DO ADMINISTRADOR ===\n");
+    printf("Digite o CPF: ");
+    scanf("%s", cpfDigitado);
 
     printf("Digite a senha: ");
-    scanf("%s", senha);
+    scanf("%s", senhaDigitada);
 
-    if (strcmp(cpf, adminPadrao.cpf) == 0 && strcmp(senha, adminPadrao.senha) == 0) {
-        printf("Login bem-sucedido!\n");
+    // Dados fixos do administrador
+    if (strcmp(cpfDigitado, "12345678900") == 0 && strcmp(senhaDigitada, "admin123") == 0) {
+        printf("Login realizado com sucesso!\n");
         return 1;
     } else {
-        printf("CPF ou senha incorretos.\n");
+        printf("CPF ou senha inválidos.\n");
         return 0;
     }
 }
