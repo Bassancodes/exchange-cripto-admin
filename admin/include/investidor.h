@@ -1,3 +1,4 @@
+
 #ifndef INVESTIDOR_H
 #define INVESTIDOR_H
 
@@ -8,5 +9,6 @@ typedef struct {
 } Investidor;
 
 void cadastrarInvestidor();
+
 
 #endif

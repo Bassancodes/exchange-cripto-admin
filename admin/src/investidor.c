@@ -4,24 +4,30 @@
 #include "../include/investidor.h"
 
 void cadastrarInvestidor() {
-    FILE *arquivo = fopen("admin/data/investidores.dat", "ab");
-    if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo de investidores.\n");
+    FILE *arquivo = fopen("data/users.dat", "ab");
+    if (!arquivo) {
+        printf("Erro ao abrir o arquivo de usuários.\n");
         return;
     }
 
-    Investidor novo;
-    printf("\n=== Cadastro de Investidor ===\n");
-    printf("Nome: ");
-    scanf(" %[^\n]", novo.nome);
+    Usuario novo;
+    printf("Digite o nome do novo investidor: ");
+    fgets(novo.nome, sizeof(novo.nome), stdin);
+    strtok(novo.nome, "\n"); // remove \n
+    printf("Digite o CPF: ");
+    fgets(novo.cpf, sizeof(novo.cpf), stdin);
+    strtok(novo.cpf, "\n");
+    printf("Digite a senha: ");
+    fgets(novo.senha, sizeof(novo.senha), stdin);
+    strtok(novo.senha, "\n");
 
-    printf("CPF: ");
-    scanf("%s", novo.cpf);
+    // Inicializa saldos com zero
+    novo.saldoReais = 0.0;
+    novo.saldoBTC = 0.0;
+    novo.saldoETH = 0.0;
+    novo.saldoXRP = 0.0;
 
-    printf("Senha: ");
-    scanf("%s", novo.senha);
-
-    fwrite(&novo, sizeof(Investidor), 1, arquivo);
+    fwrite(&novo, sizeof(Usuario), 1, arquivo);
     fclose(arquivo);
 
     printf("Investidor cadastrado com sucesso!\n");
