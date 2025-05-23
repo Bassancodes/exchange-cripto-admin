@@ -32,3 +32,49 @@ void cadastrarInvestidor() {
 
     printf("Investidor cadastrado com sucesso!\n");
 }
+
+
+void excluirInvestidor() {
+    char cpf[12];
+    printf("Digite o CPF do investidor que deseja excluir: ");
+    scanf("%s", cpf);
+
+    FILE *arquivo = fopen("data/usuarios.dat", "rb");
+    FILE *temp = fopen("data/temp.dat", "wb");
+
+    if (!arquivo || !temp) {
+        printf("Erro ao abrir os arquivos.\n");
+        return;
+    }
+
+    Admin usuario;
+    int encontrado = 0;
+
+    while (fread(&usuario, sizeof(Admin), 1, arquivo)) {
+        if (strcmp(usuario.cpf, cpf) == 0) {
+            encontrado = 1;
+            printf("\nInvestidor encontrado:\n");
+            printf("Nome: %s\nCPF: %s\n", usuario.nome, usuario.cpf);
+            printf("Deseja realmente excluir este investidor? (s/n): ");
+            char opcao;
+            scanf(" %c", &opcao);
+            if (opcao == 'n' || opcao == 'N') {
+                fwrite(&usuario, sizeof(Admin), 1, temp);
+            } else {
+                printf("Investidor excluído com sucesso.\n");
+            }
+        } else {
+            fwrite(&usuario, sizeof(Admin), 1, temp);
+        }
+    }
+
+    fclose(arquivo);
+    fclose(temp);
+
+    remove("data/usuarios.dat");
+    rename("data/temp.dat", "data/usuarios.dat");
+
+    if (!encontrado) {
+        printf("Nenhum investidor encontrado com esse CPF.\n");
+    }
+}

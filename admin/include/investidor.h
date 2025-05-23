@@ -9,6 +9,6 @@ typedef struct {
 } Investidor;
 
 void cadastrarInvestidor();
-
+void excluirInvestidor();
 
 #endif
