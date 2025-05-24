@@ -12,5 +12,7 @@ typedef struct {
 } Usuario;
 
 void cadastrarInvestidor();
+void excluirinvestidor();
+
 
 #endif
