@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include <string.h>
+
+#include <time.h>
 #include "../include/criptomoeda.h"
 
 double cotacaoBTC = 300000.0;

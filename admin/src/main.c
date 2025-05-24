@@ -43,13 +43,13 @@ int main() {
                  excluirCriptomoeda();
                 break;
             case 5:
-                // consultarSaldo();
+                 consultarSaldo();
                 break;
             case 6:
-                // consultarExtrato();
+                 consultarExtrato();
                 break;
             case 7:
-                // atualizarCotacoes();
+                atualizarCotacoes();
                 break;
             case 8:
                 printf("Saindo...\n");

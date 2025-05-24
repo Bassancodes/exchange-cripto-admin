@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include <time.h>
 #include "../include/investidor.h"
 
 void cadastrarInvestidor() {
-    FILE *arquivo = fopen("data/users.dat", "ab");
+    FILE *arquivo = fopen("admin/data/usuarios.dat", "ab");
     if (!arquivo) {
         printf("Erro ao abrir o arquivo de usuários.\n");
         return;
@@ -39,18 +41,19 @@ void excluirInvestidor() {
     printf("Digite o CPF do investidor que deseja excluir: ");
     scanf("%s", cpf);
 
-    FILE *arquivo = fopen("data/usuarios.dat", "rb");
-    FILE *temp = fopen("data/temp.dat", "wb");
+ 	
+	FILE *arquivo = fopen("admin/data/usuarios.dat", "rb");
+	FILE *temp = fopen("admin/data/temp.dat", "wb");
 
     if (!arquivo || !temp) {
         printf("Erro ao abrir os arquivos.\n");
         return;
     }
 
-    Admin usuario;
+    Usuario usuario;
     int encontrado = 0;
 
-    while (fread(&usuario, sizeof(Admin), 1, arquivo)) {
+    while (fread(&usuario, sizeof(Usuario), 1, arquivo)) {
         if (strcmp(usuario.cpf, cpf) == 0) {
             encontrado = 1;
             printf("\nInvestidor encontrado:\n");
@@ -59,12 +62,12 @@ void excluirInvestidor() {
             char opcao;
             scanf(" %c", &opcao);
             if (opcao == 'n' || opcao == 'N') {
-                fwrite(&usuario, sizeof(Admin), 1, temp);
+                fwrite(&usuario, sizeof(Usuario), 1, temp);
             } else {
                 printf("Investidor excluído com sucesso.\n");
             }
         } else {
-            fwrite(&usuario, sizeof(Admin), 1, temp);
+            fwrite(&usuario, sizeof(Usuario), 1, temp);
         }
     }
 
@@ -85,7 +88,7 @@ void consultarSaldo() {
     printf("Digite o CPF do investidor que deseja consultar: ");
     scanf("%s", cpf);
 
-    FILE *arquivo = fopen("data/usuarios.dat", "rb");
+    FILE *arquivo = fopen("admin/data/usuarios.dat", "rb");
     if (!arquivo) {
         printf("Erro ao abrir o arquivo.\n");
         return;
@@ -121,7 +124,8 @@ void consultarExtrato() {
     printf("Digite o CPF do investidor: ");
     scanf("%s", cpf);
 
-    FILE *arquivo = fopen("admin/data/users.dat", "rb");
+    FILE *arquivo = fopen("admin/data/usuarios.dat", "rb");
+
     if (!arquivo) {
         printf("Erro ao abrir o arquivo de usuários.\n");
         return;

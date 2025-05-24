@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "funcoes.h"
+#include "../include/usuario.h"
+
 
 int main() {
     Usuario usuarios[10];

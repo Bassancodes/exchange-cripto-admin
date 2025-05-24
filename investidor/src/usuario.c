@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
-#include "funcoes.h"
+#include "../include/usuario.h"
 
 float cotacaoBitcoin = 100000.0;
 float cotacaoEthereum = 5000.0;
