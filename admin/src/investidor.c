@@ -114,26 +114,39 @@ void consultarSaldo() {
 
     fclose(arquivo);
 }
+
+
 void consultarExtrato() {
     char cpf[12];
-    char nomeArquivo[50];
-    char linha[200];
-
-    printf("Digite o CPF do investidor para consultar o extrato: ");
+    printf("Digite o CPF do investidor: ");
     scanf("%s", cpf);
 
-    sprintf(nomeArquivo, "data/extrato_%s.txt", cpf);
-
-    FILE *arquivo = fopen(nomeArquivo, "r");
+    FILE *arquivo = fopen("admin/data/users.dat", "rb");
     if (!arquivo) {
-        printf("Extrato não encontrado para o CPF informado.\n");
+        printf("Erro ao abrir o arquivo de usuários.\n");
         return;
     }
 
-    printf("\n--- Extrato do Investidor ---\n");
-    while (fgets(linha, sizeof(linha), arquivo)) {
-        printf("%s", linha);
+    Usuario usuario;
+    int encontrado = 0;
+
+    while (fread(&usuario, sizeof(Usuario), 1, arquivo)) {
+        if (strcmp(usuario.cpf, cpf) == 0) {
+            encontrado = 1;
+            printf("\n===== Extrato do Investidor =====\n");
+            printf("Nome: %s\n", usuario.nome);
+            printf("CPF: %s\n", usuario.cpf);
+            printf("Saldo em Reais: R$ %.2f\n", usuario.saldoReais);
+            printf("Bitcoin (BTC): %.6f\n", usuario.saldoBTC);
+            printf("Ethereum (ETH): %.6f\n", usuario.saldoETH);
+            printf("Ripple (XRP): %.6f\n", usuario.saldoXRP);
+            break;
+        }
     }
 
     fclose(arquivo);
+
+    if (!encontrado) {
+        printf("Investidor não encontrado.\n");
+    }
 }
