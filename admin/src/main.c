@@ -35,7 +35,7 @@ int main() {
                  cadastrarInvestidor();
                 break;
             case 2:
-                // excluirInvestidor();
+                 excluirInvestidor();
                 break;
             case 3:
                  cadastrarCriptomoeda();
