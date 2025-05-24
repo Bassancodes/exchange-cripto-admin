@@ -3,6 +3,12 @@
 #include <string.h>
 #include "../include/criptomoeda.h"
 
+double cotacaoBTC = 300000.0;
+double cotacaoETH = 10000.0;
+double cotacaoXRP = 2.0;
+
+
+
 void cadastrarCriptomoeda() {
     Criptomoeda nova;
 
@@ -71,4 +77,23 @@ void excluirCriptomoeda() {
     if (!encontrado) {
         printf("Criptomoeda não encontrada.\n");
     }
+}
+
+void atualizarCotacoes() {
+    srand(time(NULL));
+    double variacao;
+
+    variacao = ((rand() % 1001) - 500) / 10000.0; // -0.05 a +0.05
+    cotacaoBTC += cotacaoBTC * variacao;
+
+    variacao = ((rand() % 1001) - 500) / 10000.0;
+    cotacaoETH += cotacaoETH * variacao;
+
+    variacao = ((rand() % 1001) - 500) / 10000.0;
+    cotacaoXRP += cotacaoXRP * variacao;
+
+    printf("Cotações atualizadas:\n");
+    printf("Bitcoin (BTC): R$ %.2f\n", cotacaoBTC);
+    printf("Ethereum (ETH): R$ %.2f\n", cotacaoETH);
+    printf("Ripple (XRP): R$ %.2f\n", cotacaoXRP);
 }
