@@ -4,7 +4,6 @@
 
 #include "../include/investidor.h"
 #include "../include/criptomoeda.h"
-#include "../include/criptomoeda.h"
 
 
 
