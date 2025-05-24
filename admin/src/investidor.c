@@ -78,3 +78,39 @@ void excluirInvestidor() {
         printf("Nenhum investidor encontrado com esse CPF.\n");
     }
 }
+
+
+void consultarSaldo() {
+    char cpf[12];
+    printf("Digite o CPF do investidor que deseja consultar: ");
+    scanf("%s", cpf);
+
+    FILE *arquivo = fopen("data/usuarios.dat", "rb");
+    if (!arquivo) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    Usuario usuario;
+    int encontrado = 0;
+
+    while (fread(&usuario, sizeof(Usuario), 1, arquivo)) {
+        if (strcmp(usuario.cpf, cpf) == 0) {
+            printf("\n--- Dados do Investidor ---\n");
+            printf("Nome: %s\n", usuario.nome);
+            printf("CPF: %s\n", usuario.cpf);
+            printf("Saldo em Reais: R$ %.2f\n", usuario.saldoReais);
+            printf("Saldo em BTC: %.6f\n", usuario.saldoBTC);
+            printf("Saldo em ETH: %.6f\n", usuario.saldoETH);
+            printf("Saldo em XRP: %.6f\n", usuario.saldoXRP);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Investidor não encontrado.\n");
+    }
+
+    fclose(arquivo);
+}

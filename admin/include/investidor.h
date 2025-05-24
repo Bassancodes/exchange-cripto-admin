@@ -13,6 +13,10 @@ typedef struct {
 
 void cadastrarInvestidor();
 void excluirinvestidor();
+void consultarSaldo();
+
+
+
 
 
 #endif
