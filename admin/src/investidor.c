@@ -114,3 +114,26 @@ void consultarSaldo() {
 
     fclose(arquivo);
 }
+void consultarExtrato() {
+    char cpf[12];
+    char nomeArquivo[50];
+    char linha[200];
+
+    printf("Digite o CPF do investidor para consultar o extrato: ");
+    scanf("%s", cpf);
+
+    sprintf(nomeArquivo, "data/extrato_%s.txt", cpf);
+
+    FILE *arquivo = fopen(nomeArquivo, "r");
+    if (!arquivo) {
+        printf("Extrato não encontrado para o CPF informado.\n");
+        return;
+    }
+
+    printf("\n--- Extrato do Investidor ---\n");
+    while (fgets(linha, sizeof(linha), arquivo)) {
+        printf("%s", linha);
+    }
+
+    fclose(arquivo);
+}
